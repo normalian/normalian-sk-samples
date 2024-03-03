@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.Planning.Handlebars;
 using Microsoft.SemanticKernel.Plugins.Core;
 using System.Text;
@@ -27,37 +26,58 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 var builder = Kernel.CreateBuilder();
 builder.Services.AddSingleton(loggerFactory);
 builder.AddAzureOpenAIChatCompletion(deployment, endpoint, apiKey).Build();
-var kernel = builder.Build();
-kernel.ImportPluginFromType<FileIOPlugin>();
 
-string filename = @"test.txt ";
-
-// This code as follows can read the file directly.
-Console.WriteLine("========================================== Start plan");
 {
-    // Create a plan
-    var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions() { AllowLoops = true });
-    var plan = await planner.CreatePlanAsync(kernel, $"Please read {filename} file on current directory");
-    Console.WriteLine($"Plan: {plan}");
+    var kernel = builder.Build();
+    kernel.ImportPluginFromType<FileIOPlugin>();
 
-    // Execute the plan
-    Console.WriteLine("========================================== Start execute plan");
-    var result = (await plan.InvokeAsync(kernel)).Trim();
-    Console.WriteLine($"Results: {result}");
+    string filename = @"test.txt ";
+
+    // This code as follows can read the file directly.
+    Console.WriteLine("========================================== Start plan");
+    {
+        // Create a plan
+        var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions() { AllowLoops = true });
+        var plan = await planner.CreatePlanAsync(kernel, $"Please read {filename} file on current directory");
+        Console.WriteLine($"Plan: {plan}");
+
+        // Execute the plan
+        Console.WriteLine("========================================== Start execute plan");
+        var result = (await plan.InvokeAsync(kernel)).Trim();
+        Console.WriteLine($"Results: {result}");
+    }
+
+    // This code as follows can not read the file directly.
+    //Console.WriteLine("========================================== Start invokeprompt");
+    //{
+    //    OpenAIPromptExecutionSettings settings = new()
+    //    {
+    //        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
+    //    }; var results = kernel.InvokePromptStreamingAsync($"Please read {filename} file on current directory", new KernelArguments(settings));
+    //    await foreach (var message in results)
+    //    {
+    //        Console.Write(message);
+    //    }
+    //}
 }
-
-// This code as follows can not read the file directly.
-Console.WriteLine("========================================== Start invokeprompt");
 {
-    OpenAIPromptExecutionSettings settings = new()
+    var kernel = builder.Build();
+    kernel.ImportPluginFromType<HttpPlugin>();
+
+    var uri = "https://raw.githubusercontent.com/normalian/My-Azure-Portal-ChromeExtension/master/README.md";
+
+    Console.WriteLine("========================================== Start plan");
     {
-        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
-    }; var results = kernel.InvokePromptStreamingAsync($"Please read {filename} file on current directory", new KernelArguments(settings));
-    await foreach (var message in results)
-    {
-        Console.Write(message);
+        // Create a plan
+        var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions() { AllowLoops = true });
+        var plan = await planner.CreatePlanAsync(kernel, $"Please send http request to {uri}");
+        Console.WriteLine($"Plan: {plan}");
+
+        // Execute the plan
+        Console.WriteLine("========================================== Start execute plan");
+        var result = (await plan.InvokeAsync(kernel)).Trim();
+        Console.WriteLine($"Results: {result}");
     }
 }
-
 #pragma warning restore SKEXP0050, SKEXP0060
 Console.WriteLine("========================================== End of Application ");

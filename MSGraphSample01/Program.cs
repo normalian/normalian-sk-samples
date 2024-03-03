@@ -1,13 +1,13 @@
 ﻿using Azure.Identity;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Graph;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.SemanticKernel.Planning.Handlebars;
 using Microsoft.SemanticKernel.Plugins.MsGraph;
 using Microsoft.SemanticKernel.Plugins.MsGraph.Connectors;
-using Kernel = Microsoft.SemanticKernel.Kernel;
-using Microsoft.Extensions.Configuration;
 using System.Text;
 
 Console.OutputEncoding = Encoding.GetEncoding("utf-8");
@@ -47,7 +47,7 @@ var options = new DeviceCodeCredentialOptions
 var deviceCodeCredential = new DeviceCodeCredential(options);
 var graphClient = new GraphServiceClient(deviceCodeCredential, scope);
 
-#pragma warning disable SKEXP0053 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+#pragma warning disable SKEXP0053, SKEXP0060 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 OutlookCalendarConnector connector = new OutlookCalendarConnector(graphClient);
 CalendarPlugin plugin = new CalendarPlugin(connector, loggerFactory);
 
@@ -55,19 +55,29 @@ var result = await plugin.GetCalendarEventsAsync(10, 0);
 var kernel = builder.Build();
 kernel.ImportPluginFromObject(plugin, "CalendarPlugin");
 
-#pragma warning restore SKEXP0053 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-
 OpenAIPromptExecutionSettings settings = new()
 {
     ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
 };
 
 string prompt = "Please list all meetings";
-var results = kernel.InvokePromptStreamingAsync(prompt, new KernelArguments(settings));
-await foreach (var message in results)
 {
-    Console.Write(message);
+    var results = kernel.InvokePromptStreamingAsync(prompt, new KernelArguments(settings));
+    await foreach (var message in results)
+    {
+        Console.Write(message);
+    }
 }
+{
+    var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions() { AllowLoops = true });
+    var plan = await planner.CreatePlanAsync(kernel, prompt);
+    //Console.WriteLine("Plan: {Plan}", plan);
+
+    // Execute the plan
+    var results = (await plan.InvokeAsync(kernel)).Trim();
+    Console.WriteLine("Results: {Result}", results);
+}
+#pragma warning restore SKEXP0053, SKEXP0060 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 Console.WriteLine();
 Console.ReadLine();
