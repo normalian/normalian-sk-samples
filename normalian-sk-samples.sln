@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSGraphSample01", "MSGraphS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerFileReadSample01", "PlannerFileReadSample01\PlannerFileReadSample01.csproj", "{CDAA9CDA-FE90-482F-BA4F-5B8FC72622B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerHttpPluginSample01", "PlannerHttpPluginSample\PlannerHttpPluginSample01.csproj", "{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AISearchMemorySample01", "AISearchMemorySample01\AISearchMemorySample01.csproj", "{EDDB564A-E141-4E06-AED4-0AE9554C913C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{CDAA9CDA-FE90-482F-BA4F-5B8FC72622B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDAA9CDA-FE90-482F-BA4F-5B8FC72622B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDAA9CDA-FE90-482F-BA4F-5B8FC72622B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
