@@ -17,9 +17,9 @@ var endpoint = configuration["AzureOpenAI:Endpoint"];
 var apiKey = configuration["AzureOpenAI:ApiKey"];
 using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddConsole();
-    //builder.SetMinimumLevel(LogLevel.Trace);
-    builder.SetMinimumLevel(LogLevel.Warning);
+builder.AddConsole();
+//builder.SetMinimumLevel(LogLevel.Trace);
+builder.SetMinimumLevel(LogLevel.Warning);
 });
 
 #pragma warning disable SKEXP0050, SKEXP0060
@@ -28,16 +28,15 @@ builder.Services.AddSingleton(loggerFactory);
 builder.AddAzureOpenAIChatCompletion(deployment, endpoint, apiKey).Build();
 
 var kernel = builder.Build();
-kernel.ImportPluginFromType<FileIOPlugin>();
+kernel.ImportPluginFromType<HttpPlugin>();
 
-string filename = @"test.txt ";
+var uri = "https://raw.githubusercontent.com/normalian/My-Azure-Portal-ChromeExtension/master/README.md";
 
-// This code as follows can read the file directly.
 Console.WriteLine("========================================== Start plan");
 {
     // Create a plan
     var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions() { AllowLoops = true });
-    var plan = await planner.CreatePlanAsync(kernel, $"Please read {filename} file on current directory");
+    var plan = await planner.CreatePlanAsync(kernel, $"Please send http request to {uri}");
     Console.WriteLine($"Plan: {plan}");
 
     // Execute the plan
@@ -45,18 +44,5 @@ Console.WriteLine("========================================== Start plan");
     var result = (await plan.InvokeAsync(kernel)).Trim();
     Console.WriteLine($"Results: {result}");
 }
-
-// This code as follows can not read the file directly.
-//Console.WriteLine("========================================== Start invokeprompt");
-//{
-//    OpenAIPromptExecutionSettings settings = new()
-//    {
-//        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions,
-//    }; var results = kernel.InvokePromptStreamingAsync($"Please read {filename} file on current directory", new KernelArguments(settings));
-//    await foreach (var message in results)
-//    {
-//        Console.Write(message);
-//    }
-//}
 #pragma warning restore SKEXP0050, SKEXP0060
 Console.WriteLine("========================================== End of Application ");

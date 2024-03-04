@@ -33,7 +33,7 @@ var kernel = builder.Build();
 {
     BingConnector bingConnector = new BingConnector(bingKey, loggerFactory);
     var plugin = new WebSearchEnginePlugin(bingConnector);
-    kernel.ImportPluginFromObject(plugin, "WebSearchEnginePlugin");
+    //kernel.ImportPluginFromObject(plugin, "WebSearchEnginePlugin");
 
     OpenAIPromptExecutionSettings settings = new()
     {
@@ -55,12 +55,12 @@ Console.WriteLine("=================== End of Web search ===================");
     // plugin.DownloadToFileAsync(new Uri(url), "README.md").Wait();
 
     //kernel.ImportPluginFromObject(plugin, "WebFileDownloadPlugin");
-    kernel.ImportPluginFromType<FileIOPlugin>();
-    kernel.ImportPluginFromType<HttpPlugin>();
+    //kernel.ImportPluginFromType<FileIOPlugin>();
+    //kernel.ImportPluginFromType<HttpPlugin>();
 
     // Create a plan
     var planner = new HandlebarsPlanner(new HandlebarsPlannerOptions() { AllowLoops = true });
-    var plan = await planner.CreatePlanAsync(kernel, $"Please download {uri} and save it on my current directory. Call DownloadToFileAsync or DownloadToFile function by changing the URI parameter type from string to Uri instance.");
+    var plan = await planner.CreatePlanAsync(kernel, $"Please download {uri} and save it on my current directory.");
     Console.WriteLine($"Plan: {plan}");
 
     // Execute the plan
