@@ -67,7 +67,7 @@ Console.WriteLine("========================================== Start with TextMem
 #pragma warning disable SKEXP0052
 var builder = Kernel.CreateBuilder();
 builder.Services.AddSingleton(loggerFactory);
-builder.AddAzureOpenAIChatCompletion(deployment, endpoint, apiKey).Build();
+builder.AddAzureOpenAIChatCompletion(deployment, endpoint, apiKey);
 
 var kernel = builder.Build();
 kernel.ImportPluginFromObject(new TextMemoryPlugin(memory));

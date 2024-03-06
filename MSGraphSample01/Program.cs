@@ -26,7 +26,7 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 });
 var builder = Kernel.CreateBuilder();
 builder.Services.AddSingleton(loggerFactory);
-builder.AddAzureOpenAIChatCompletion(deployment, endpoint, apiKey).Build();
+builder.AddAzureOpenAIChatCompletion(deployment, endpoint, apiKey);
 
 var scope = new[] { "Calendars.Read" };
 var tenantId = configuration["EntraID:TenantId"];
