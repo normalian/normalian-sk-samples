@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BingSearchSample01", "BingS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSGraphSample01", "MSGraphSample01\MSGraphSample01.csproj", "{E09A57C0-623A-4CFC-9C5E-1C0C287218F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerFileReadSample01", "PlannerFileReadSample01\PlannerFileReadSample01.csproj", "{CDAA9CDA-FE90-482F-BA4F-5B8FC72622B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlannerFileReadSample01", "PlannerFileReadSample01\PlannerFileReadSample01.csproj", "{CDAA9CDA-FE90-482F-BA4F-5B8FC72622B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerHttpPluginSample01", "PlannerHttpPluginSample\PlannerHttpPluginSample01.csproj", "{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlannerHttpPluginSample01", "PlannerHttpPluginSample\PlannerHttpPluginSample01.csproj", "{433867AC-1F4E-4D0D-B3C2-2FEC41C6D2AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AISearchMemorySample01", "AISearchMemorySample01\AISearchMemorySample01.csproj", "{EDDB564A-E141-4E06-AED4-0AE9554C913C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AISearchMemorySample01", "AISearchMemorySample01\AISearchMemorySample01.csproj", "{EDDB564A-E141-4E06-AED4-0AE9554C913C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerWith2PluginsSample01", "PlannerWith2PluginsSample01\PlannerWith2PluginsSample01.csproj", "{D4C2008C-AB6D-49B2-963E-1C102922EE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDDB564A-E141-4E06-AED4-0AE9554C913C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
