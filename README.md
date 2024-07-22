@@ -15,3 +15,6 @@ This sample use FileIOPlugin.
 
 ## PlannerHttpPluginSample01
 This sample use HttpPlugin.
+
+## DotnetPythonSample01
+This sample offers both Python and C# codes. Python code puts sample data on Azure AI Search as backend. Then, C# code leverages the sample data as fronend.
