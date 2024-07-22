@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlannerHttpPluginSample01",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AISearchMemorySample01", "AISearchMemorySample01\AISearchMemorySample01.csproj", "{EDDB564A-E141-4E06-AED4-0AE9554C913C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerWith2PluginsSample01", "PlannerWith2PluginsSample01\PlannerWith2PluginsSample01.csproj", "{D4C2008C-AB6D-49B2-963E-1C102922EE0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlannerWith2PluginsSample01", "PlannerWith2PluginsSample01\PlannerWith2PluginsSample01.csproj", "{D4C2008C-AB6D-49B2-963E-1C102922EE0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetPythonSample01", "DotnetPythonSample01\DotnetPythonSample01.csproj", "{04F877E8-3B06-428E-97DC-33193E81D633}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4C2008C-AB6D-49B2-963E-1C102922EE0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04F877E8-3B06-428E-97DC-33193E81D633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04F877E8-3B06-428E-97DC-33193E81D633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04F877E8-3B06-428E-97DC-33193E81D633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04F877E8-3B06-428E-97DC-33193E81D633}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
